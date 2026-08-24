@@ -1,0 +1,21 @@
+{% extends "meu_app/base.html" %}
+{% block title %}Equipamentos | Gestão de Ativos{% endblock %}
+{% block content %}
+<div class="d-flex justify-content-between align-items-center mb-4 flex-wrap gap-2">
+    <div><h1 class="h2 mb-1">Equipamentos</h1><p class="text-secondary mb-0">Todos os ativos cadastrados no banco de dados.</p></div>
+    <a href="{% url 'cadastrar_equipamento' %}" class="btn btn-primary">+ Novo equipamento</a>
+</div>
+<div class="card page-card"><div class="card-body p-0"><div class="table-responsive">
+<table class="table table-hover mb-0">
+<thead class="table-dark"><tr><th>Nome</th><th>Patrimônio</th><th>Tipo</th><th>Status</th><th class="text-end">Ação</th></tr></thead>
+<tbody>
+{% for equipamento in equipamentos %}
+<tr>
+<td class="fw-semibold">{{ equipamento.nome }}</td><td>#{{ equipamento.numero_patrimonio }}</td><td>{{ equipamento.tipo }}</td>
+<td>{% if equipamento.em_uso %}<span class="badge text-bg-success">Em uso</span>{% else %}<span class="badge text-bg-secondary">Disponível</span>{% endif %}</td>
+<td class="text-end"><a class="btn btn-sm btn-outline-primary" href="{% url 'detalhes_equipamento' equipamento.id %}">Ver detalhes</a></td>
+</tr>
+{% empty %}<tr><td colspan="5" class="text-center py-5 text-secondary">Nenhum equipamento cadastrado ainda.</td></tr>{% endfor %}
+</tbody>
+</table></div></div></div>
+{% endblock %}

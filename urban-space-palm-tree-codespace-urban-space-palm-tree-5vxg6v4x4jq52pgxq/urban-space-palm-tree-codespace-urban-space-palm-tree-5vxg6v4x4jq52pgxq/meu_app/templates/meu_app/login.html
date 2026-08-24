@@ -1,0 +1,24 @@
+{% extends "meu_app/base.html" %}
+{% block title %}Login | Gestão de Ativos{% endblock %}
+{% block content %}
+<div class="card page-card auth-card">
+    <div class="card-body p-4 p-md-5">
+        <h1 class="h3 mb-2 text-center">Entrar</h1>
+        <p class="text-secondary text-center mb-4">Acesse o Sistema de Gestão de Ativos</p>
+        <form method="post">
+            {% csrf_token %}
+            {% if form.non_field_errors %}<div class="alert alert-danger">Usuário ou senha inválidos.</div>{% endif %}
+            <div class="mb-3">
+                <label for="id_username" class="form-label">Usuário</label>
+                <input type="text" name="username" id="id_username" class="form-control" required autofocus>
+            </div>
+            <div class="mb-4">
+                <label for="id_password" class="form-label">Senha</label>
+                <input type="password" name="password" id="id_password" class="form-control" required>
+            </div>
+            <button class="btn btn-primary w-100" type="submit">Entrar</button>
+        </form>
+        <p class="text-center mt-4 mb-0">Ainda não tem perfil? <a href="{% url 'cadastro_usuario' %}">Cadastre-se</a></p>
+    </div>
+</div>
+{% endblock %}

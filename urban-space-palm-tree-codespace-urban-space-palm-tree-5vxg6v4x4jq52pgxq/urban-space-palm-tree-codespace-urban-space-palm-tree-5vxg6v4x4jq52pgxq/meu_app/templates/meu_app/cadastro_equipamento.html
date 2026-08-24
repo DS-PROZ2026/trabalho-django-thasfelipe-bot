@@ -1,0 +1,13 @@
+{% extends "meu_app/base.html" %}
+{% block title %}Novo equipamento | Gestão de Ativos{% endblock %}
+{% block content %}
+<div class="row justify-content-center"><div class="col-lg-7"><div class="card page-card"><div class="card-body p-4 p-md-5">
+<h1 class="h3 mb-1">Novo equipamento</h1><p class="text-secondary mb-4">Cadastre um ativo da empresa.</p>
+<form method="post" novalidate>{% csrf_token %}
+<div class="mb-3"><label class="form-label" for="{{ form.nome.id_for_label }}">{{ form.nome.label }}</label>{{ form.nome }}{% for error in form.nome.errors %}<div class="text-danger small">{{ error }}</div>{% endfor %}</div>
+<div class="mb-3"><label class="form-label" for="{{ form.numero_patrimonio.id_for_label }}">{{ form.numero_patrimonio.label }}</label>{{ form.numero_patrimonio }}{% for error in form.numero_patrimonio.errors %}<div class="text-danger small">{{ error }}</div>{% endfor %}</div>
+<div class="mb-3"><label class="form-label" for="{{ form.tipo.id_for_label }}">{{ form.tipo.label }}</label>{{ form.tipo }}{% for error in form.tipo.errors %}<div class="text-danger small">{{ error }}</div>{% endfor %}</div>
+<div class="form-check mb-4">{{ form.em_uso }}<label class="form-check-label" for="{{ form.em_uso.id_for_label }}">{{ form.em_uso.label }}</label></div>
+<div class="d-flex gap-2"><button type="submit" class="btn btn-primary">Salvar equipamento</button><a href="{% url 'lista_equipamentos' %}" class="btn btn-outline-secondary">Cancelar</a></div>
+</form></div></div></div></div>
+{% endblock %}
